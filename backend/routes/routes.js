@@ -36,16 +36,22 @@ router.get(`/`, (req, res) => {
 
 router.post(`/logMeIn`, async (req, res) => {
 
+    console.log('log me in', req.body)
     //Find user
     let user = await User.findOne({ email: req.body.email })
 
+    console.log(user, 'user')
     //If no user >> Create User
     if (!user) {
         user = await User.create(req.body)
     }
+    console.log(user, 'user2')
+
 
     //No matter what i have a user and now I can create the jwt token 
     jwt.sign({ user }, 'secret key', { expiresIn: '30min' }, (err, token) => {
+        console.log(err, token, 'sip')
+
         res.json({ user, token })
     })
 
