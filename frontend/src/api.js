@@ -32,6 +32,7 @@ const actions = {
     },
 
     logIn: async ({ profileObj }) => {
+        console.log(profileObj)
         let res = await axios.post(`${serverUrl}/logMeIn`, profileObj)
         localStorage.setItem('token', res.data.token)
         return res.data.user

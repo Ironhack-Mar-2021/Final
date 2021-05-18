@@ -9,7 +9,9 @@ function Auth(props) {
 
 
     const responseGoogle = (res) => {
+        console.log(res)
         actions.logIn(res).then(user => {
+            console.log(user)
             props?.setUser(user)
         })
     }
