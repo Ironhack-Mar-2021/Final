@@ -61,11 +61,11 @@ router.post(`/logMeIn`, async (req, res) => {
 
 
 function authorize(req, res, next) {
-    console.log('monkey in the mittle', req.headers)
+    console.log('monkey in the mittle', req.headers, 'bodddy', req.body)
     if (req.headers.authorization) {
         let token = req.headers.authorization.split(' ')[1]
         console.log(token)
-        jwt.verify(token, 'secret key', async (err, data) => {
+        jwt.verify(token, 'secret key', (err, data) => {
             if (!err) {
                 console.log(data)
                 res.locals.user = data.user
